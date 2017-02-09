@@ -7,12 +7,13 @@ package javaassignment;
 
 import java.awt.*;
 import java.awt.event.*;
-public class mainmenu extends Frame{
+public class mainmenu extends Frame implements ActionListener{
     
     public static void main(String[] args){
         mainmenu f2 = new mainmenu();
     }
     
+    Button buttonInsert, buttonModify, buttonPayment, buttonExit;
     public mainmenu(){
         setSize(500,300);
         setLocation(900,300);
@@ -21,16 +22,45 @@ public class mainmenu extends Frame{
         GridLayout layout = new GridLayout(2,2,10,10);
         setLayout(layout);
         
-        Button button1 = new Button("Insert New Member");
-        Button button2 = new Button("Modify Existing Records");
-        Button button3 = new Button("Payment System");
-        Button button4 = new Button("Exit");
+        buttonInsert = new Button("Insert New Member");
+        buttonModify = new Button("Modify Existing Records");
+        buttonPayment = new Button("Payment System");
+        buttonExit = new Button("Exit");
         
-        add(button1);
-        add(button2);
-        add(button3);
-        add(button4);
+        add(buttonInsert);
+        add(buttonModify);
+        add(buttonPayment);
+        add(buttonExit);
+        
+        buttonInsert.addActionListener(this);
+        buttonModify.addActionListener(this);
+        buttonPayment.addActionListener(this);
+        buttonExit.addActionListener(this);
+        
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
         
         setVisible(true);
+    }
+    
+    public void actionPerformed (ActionEvent e){
+        if(e.getSource()==buttonInsert){
+            new Registration();
+            setVisible(false);
+        }
+        else if (e.getSource()==buttonModify){
+            new Modification();
+            setVisible(false);
+        }
+        else if (e.getSource()==buttonPayment){
+            new Payment();
+            setVisible(false);
+        }
+        else{
+            dispose();
+        }
     }
 }
