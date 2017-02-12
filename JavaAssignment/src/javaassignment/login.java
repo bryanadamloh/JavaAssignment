@@ -7,6 +7,7 @@ package javaassignment;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JOptionPane;
 public class login extends Frame implements ActionListener {
     
     public static void main(String[] args){
@@ -15,7 +16,6 @@ public class login extends Frame implements ActionListener {
     
     TextField user, pass;
     Button login;
-    
     public login(){
         setSize(340,250);
         setLocation(900,300);
@@ -62,7 +62,10 @@ public class login extends Frame implements ActionListener {
             {
                 new mainmenu();
                 setVisible(false);
-            }   
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid Username and Password", "InfoBox: Login Error", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 }
