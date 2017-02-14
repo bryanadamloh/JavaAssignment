@@ -8,6 +8,9 @@ package javaassignment;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class login extends Frame implements ActionListener {
     
     public static void main(String[] args){
@@ -58,16 +61,41 @@ public class login extends Frame implements ActionListener {
     
         public void actionPerformed (ActionEvent e){
         if (e.getSource()==login){
-            if (user.getText().equals("admin") && pass.getText().equals("12345"))
-            {
+            
+            int findID = 1;
+            findID = search(user.getText(), pass.getText());
+            if (findID >= 0){
+                dispose();
                 new mainmenu();
-                setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Invalid Username and Password", "InfoBox: Login Error", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
+        
+        public static int search(String user, String pass){
+            java.lang.String log;
+            log = "login.txt";
+            File login = new File(log);
+            try{
+                Scanner scan = new Scanner(login);
+                while (scan.hasNext()){
+                    String username = scan.nextLine();
+                    String[] details = username.split(":");
+                    String name = details[0];
+                    String password = details[1];
+                    
+                    if(name.equals(user)&&password.equals(pass)){
+                        return 0;
+                    }
+                }
+            }
+            catch(FileNotFoundException s){
+ 
+            }
+            return -1;
+        }
 }
 
 
