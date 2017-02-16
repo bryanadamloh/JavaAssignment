@@ -60,8 +60,7 @@ public class login extends Frame implements ActionListener {
     }
     
         public void actionPerformed (ActionEvent e){
-        if (e.getSource()==login){
-            
+        if (e.getSource()==login){           
             int findID = 1;
             findID = search(user.getText(), pass.getText());
             if (findID >= 0){
@@ -75,7 +74,7 @@ public class login extends Frame implements ActionListener {
     }
         
         public static int search(String user, String pass){
-            java.lang.String log;
+            String log;
             log = "login.txt";
             File login = new File(log);
             try{
@@ -92,7 +91,7 @@ public class login extends Frame implements ActionListener {
                 }
             }
             catch(FileNotFoundException s){
- 
+                s.printStackTrace();
             }
             return -1;
         }
