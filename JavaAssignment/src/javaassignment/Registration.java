@@ -68,7 +68,7 @@ public class Registration extends Frame implements ActionListener {
                 dispose();
             }
         });
-        
+         
         create.addActionListener(this);
         cancel.addActionListener(this);
         setVisible(true);
@@ -90,7 +90,6 @@ public class Registration extends Frame implements ActionListener {
                      ICNum.setText("");
                      membership.select("Deluxe");
                  }
-                 
                  JOptionPane.showMessageDialog(null, "Registration has been made successfully!", "Registration Info", JOptionPane.INFORMATION_MESSAGE);
             }
                 catch (IOException f){

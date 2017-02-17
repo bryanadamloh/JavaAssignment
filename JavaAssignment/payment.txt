@@ -1,0 +1,3 @@
+1:reuben:12344123:Deluxe:Registration:RM500:17/2/2017
+2:bryan:970905385417:Non-Deluxe:Monthly:RM100:19/2/2017
+3:beatrice:970122108543:Week-Day:Monthly:RM75:20/2/2017
