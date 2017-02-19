@@ -16,7 +16,7 @@ public class login extends Frame implements ActionListener {
     public static void main(String[] args){
         login f1 = new login();
     }
-    
+    public static String staffuser;
     TextField user, pass;
     Button login;
     public login(){
@@ -65,7 +65,7 @@ public class login extends Frame implements ActionListener {
             findID = search(user.getText(), pass.getText());
             if (findID >= 0){
                 dispose();
-                new mainmenu();
+                new mainmenu();        
             }
             else{
                 JOptionPane.showMessageDialog(null, "Invalid Username and Password", "InfoBox: Login Error", JOptionPane.INFORMATION_MESSAGE);
@@ -86,6 +86,7 @@ public class login extends Frame implements ActionListener {
                     String password = details[1];
                     
                     if(name.equals(user)&&password.equals(pass)){
+                        staffuser = user;                       
                         return 0;
                     }
                 }
@@ -97,5 +98,4 @@ public class login extends Frame implements ActionListener {
             
         }
 }
-
 

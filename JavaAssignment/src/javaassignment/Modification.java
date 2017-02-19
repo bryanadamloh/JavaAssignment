@@ -107,7 +107,7 @@ public class Modification extends Frame implements ActionListener{
             new mainmenu();
             setVisible(false);
         }
-        
+       
     }
     
     public void searchMember() throws IOException{
@@ -167,7 +167,6 @@ public class Modification extends Frame implements ActionListener{
                 if(br != null){
                     br.close();
                 }
-            
             
                 if(bw != null){
                     bw.close();

@@ -11,13 +11,16 @@ import java.io.*;
 import javax.swing.JOptionPane;
 import java.util.Scanner;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class Payment extends Frame implements ActionListener{
     
     public static void main(String[] args){
         Payment f4 = new Payment();   
     }
     
-    TextField fullname, ID, membership, payment, ICNum, date;
+    TextField fullname, ID, membership, payment, ICNum, date, staff;
     Choice payType;
     Button record, search, cancel;
     public Payment(){
@@ -37,6 +40,7 @@ public class Payment extends Frame implements ActionListener{
         Label type = new Label("Payment Type:");
         Label fees = new Label("Total fee:");
         Label paymentDate = new Label("Payment Date:");
+        Label staffname = new Label ("Staff Name:");
         ID = new TextField("", 15);
         fullname = new TextField("", 15);
         ICNum = new TextField("", 15);
@@ -44,6 +48,7 @@ public class Payment extends Frame implements ActionListener{
         payType = new Choice();
         payment = new TextField("", 15);
         date = new TextField("", 15);
+        staff = new TextField("", 15);
         record = new Button("Record");
         search = new Button("Search");
         cancel = new Button("Cancel");
@@ -58,6 +63,7 @@ public class Payment extends Frame implements ActionListener{
         type.setBounds(46, 184, 85, 15);
         fees.setBounds(76, 220, 60, 10);
         paymentDate.setBounds(46, 255, 90, 15);
+        staffname.setBounds(62, 290, 70, 15);
         ID.setBounds(140, 40, 150, 20);
         fullname.setBounds(140, 75, 150, 20);
         ICNum.setBounds(140, 110, 150, 20);
@@ -65,9 +71,10 @@ public class Payment extends Frame implements ActionListener{
         payType.setBounds(140, 180, 150, 20);
         payment.setBounds(140, 215, 150, 20);
         date.setBounds(140, 250, 150, 20);
-        search.setBounds(60, 300, 80, 20);
-        record.setBounds(150, 300, 80, 20);
-        cancel.setBounds(240, 300, 80, 20);
+        staff.setBounds(140, 285, 150, 20);
+        search.setBounds(60, 330, 80, 20);
+        record.setBounds(150, 330, 80, 20);
+        cancel.setBounds(240, 330, 80, 20);
         
         paymentForm.add(memberID);
         paymentForm.add(name);
@@ -76,6 +83,7 @@ public class Payment extends Frame implements ActionListener{
         paymentForm.add(type);
         paymentForm.add(fees);
         paymentForm.add(paymentDate);
+        paymentForm.add(staffname);
         paymentForm.add(ID);
         paymentForm.add(fullname);
         paymentForm.add(ICNum);
@@ -83,6 +91,7 @@ public class Payment extends Frame implements ActionListener{
         paymentForm.add(payType);
         paymentForm.add(payment);
         paymentForm.add(date);
+        paymentForm.add(staff);
         paymentForm.add(search);
         paymentForm.add(record);
         paymentForm.add(cancel);
@@ -140,6 +149,7 @@ public class Payment extends Frame implements ActionListener{
                     if(br.readLine()==null){
                         paymentWrite();
                         ID.setText("");
+                        ID.enable(true);
                         fullname.setText("");
                         ICNum.setText("");
                         membership.setText("");
@@ -150,6 +160,7 @@ public class Payment extends Frame implements ActionListener{
                     else{
                         paymentAdd();
                         ID.setText("");
+                        ID.enable(true);
                         fullname.setText("");
                         ICNum.setText("");
                         membership.setText("");
@@ -170,6 +181,8 @@ public class Payment extends Frame implements ActionListener{
     }
     
     public void searchMember() throws IOException{
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date todaydate = new Date();
         FileReader search = new FileReader("member.txt");
         
             Scanner scan = new Scanner(search);
@@ -186,6 +199,8 @@ public class Payment extends Frame implements ActionListener{
                     fullname.setText(name);
                     ICNum.setText(Number);
                     membership.setText(ship);
+                    date.setText(df.format(todaydate));
+                    staff.setText(login.staffuser);
                     ID.enable(false);
                     fullname.enable(true);
                     ICNum.enable(true);
@@ -205,7 +220,7 @@ public class Payment extends Frame implements ActionListener{
     
     public void paymentWrite() throws IOException{
         PrintWriter output = new PrintWriter("payment.txt");
-        output.print(ID.getText() + ":" + fullname.getText() + ":" + ICNum.getText() + ":" + membership.getText() + ":" + payType.getSelectedItem() + ":" + payment.getText() + ":" + date.getText());
+        output.print(ID.getText() + ":" + fullname.getText() + ":" + ICNum.getText() + ":" + membership.getText() + ":" + payType.getSelectedItem() + ":" + payment.getText() + ":" + date.getText() + ":" + staff.getText());
         output.close();
     }
     
@@ -242,7 +257,7 @@ public class Payment extends Frame implements ActionListener{
             bw.newLine();
         }
         
-        bw.write(ID.getText() + ":" + fullname.getText() + ":" + ICNum.getText() + ":" + membership.getText() + ":" + payType.getSelectedItem() + ":" + payment.getText() + ":" + date.getText());
+        bw.write(ID.getText() + ":" + fullname.getText() + ":" + ICNum.getText() + ":" + membership.getText() + ":" + payType.getSelectedItem() + ":" + payment.getText() + ":" + date.getText() + ":" + staff.getText());
         bw.close();
     }
    

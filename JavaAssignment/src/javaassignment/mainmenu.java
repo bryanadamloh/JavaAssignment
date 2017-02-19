@@ -13,7 +13,7 @@ public class mainmenu extends Frame implements ActionListener{
         mainmenu f2 = new mainmenu();
     }
     
-    Button buttonInsert, buttonModify, buttonPayment, buttonExit;
+    Button buttonInsert, buttonModify, buttonPayment, buttonSearch;
     public mainmenu(){
         setSize(500,300);
         setLocation(900,300);
@@ -25,17 +25,17 @@ public class mainmenu extends Frame implements ActionListener{
         buttonInsert = new Button("Insert New Member");
         buttonModify = new Button("Modify Existing Records");
         buttonPayment = new Button("Payment System");
-        buttonExit = new Button("Exit");
+        buttonSearch = new Button("Payment Details");
         
         add(buttonInsert);
         add(buttonModify);
         add(buttonPayment);
-        add(buttonExit);
+        add(buttonSearch);
         
         buttonInsert.addActionListener(this);
         buttonModify.addActionListener(this);
         buttonPayment.addActionListener(this);
-        buttonExit.addActionListener(this);
+        buttonSearch.addActionListener(this);
         
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -59,8 +59,9 @@ public class mainmenu extends Frame implements ActionListener{
             new Payment();
             setVisible(false);
         }
-        else{
-            dispose();
+        else if (e.getSource()==buttonSearch){
+            new SearchPayment();
+            setVisible(false);
         }
     }
 }
